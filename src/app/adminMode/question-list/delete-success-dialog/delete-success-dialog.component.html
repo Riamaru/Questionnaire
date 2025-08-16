@@ -1,0 +1,14 @@
+<h2 mat-dialog-title
+  style="display: flex; justify-content: center; color: rgb(209, 1, 1); font-size: 40px; padding-top: 20px;">
+  @if(deleteSuccessful){刪除成功} @else {刪除失敗}</h2>
+
+@if(!deleteSuccessful){
+<mat-dialog-content>
+  <div style="font-size: 20px; ">
+    <span>進行中/已結束 無法刪除</span>
+  </div>
+</mat-dialog-content>
+}
+<mat-dialog-actions>
+  <button (click)="OkButtonPressed()" mat-stroked-button style="color: rgb(0, 0, 0);">確定</button>
+</mat-dialog-actions>

@@ -1,0 +1,74 @@
+<div #scrollWrapper class="scrollWrapper" style=" padding-bottom: 2%;font-size: large;">
+  @if(feedbackMode){
+  <div style="top: 5px; right:5px; text-align: right;">填寫時間：{{questionServiceQuestionData?.fillinDate}}</div>
+  }@else {
+  <div class="dateCss" >問卷時間：{{question.sDate}} ～ {{question.eDate}}</div>
+  }
+  <div class="divCss">
+    <div class="titleCss">
+      {{question.title}}
+    </div>
+    <div>
+      {{question.directions}}
+      <br>
+      <br>
+      <br>
+      <br>
+      <span class="required">*</span>姓名 : <input #nameInput type="text" (keydown.enter)="changeToMail()"
+        class="inputCss" [(ngModel)]="userName" [disabled]="adminMode" placeholder="請輸入名稱">
+      <br>
+
+      <span class="required">*</span>信箱 : <input #mailInput (keydown.enter)="changeToPhone()" (keyup)="validateEmail()"
+        type="text" class="inputCss" [(ngModel)]="userEmail" [disabled]="adminMode" placeholder="請輸入信箱">
+      <br>
+      <span style="visibility: hidden;">*</span>手機 : <input #phoneInput (keydown.enter)="changeToAge()" type="tel" (keyup)="validatePhoneNumber()"
+        class="inputCss" [(ngModel)]="userPhone" [disabled]="adminMode" placeholder="請輸入手機號碼">
+      <br>
+      <span style="visibility: hidden;">*</span>年齡 : <input #ageInput (keydown.enter)="changeToOption()" (keyup)="validateAgeNumber()" type="text"
+        class="inputCss" [(ngModel)]="userAge" [disabled]="adminMode" placeholder="請輸入年齡">
+    </div>
+  </div>
+  <div class="questionCss">
+    <ol>
+      @for(question of newQuestionArray; let i = $index; track $index){
+      <li>
+        <h5>
+          @if(question.required == true){
+          <span class="required">*</span>
+          }
+          {{question.questName}}
+
+          @if(question.required && questionErrorList[i]) {
+          <div style="position: absolute; color: red; font-weight: bold;">此題為必填</div>
+          }
+        </h5>
+      </li>
+      <div #optionGroup>
+        @if(question.questionType == 'Multi'){
+        @for(option of question.options;track $index){
+        <input #option class="option" type="checkbox" [disabled]="adminMode"
+          [(ngModel)]="option.selectedAnswerBool">{{option.optionName}}<br>
+        }
+        }
+        @else if(question.questionType == 'Single'){
+        @for(option of question.options;track $index){
+        <input #option class="option" type="radio" [disabled]="adminMode" [name]="question.ID"
+          [value]="option.questionID" [(ngModel)]="question.radioAnswer">{{option.optionName}}<br>
+        }
+        }
+        @else if(question.questionType == 'Text'){
+        <textarea #option class="textInput" [disabled]="adminMode" [(ngModel)]="question.textAnswer"></textarea>
+        }
+      </div>
+      }
+
+    </ol>
+  </div>
+
+  <div style="top: 5px; right: 5px; margin-right: 10px; text-align: right;">
+    <button mat-raised-button (click)="goBackButtonPressed()"
+      style="margin-right: 10px; font-size: larger;">回上頁</button>
+    <button mat-raised-button (click)="previewButtonPressed()" style="font-size: larger;"
+      [hidden]="adminMode">預覽</button>
+  </div>
+</div>

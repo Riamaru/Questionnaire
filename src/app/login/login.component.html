@@ -1,0 +1,51 @@
+<div style="display: flex; justify-content: center;">
+  <span class="titleCss">管理員登入</span>
+</div>
+<div style="display: flex; justify-content: center; ">
+  <span style="position: fixed; color: red;" [hidden]="accountWarningBool">*查無此帳號</span>
+</div>
+<br>
+
+<div style="display: flex;justify-content: center;">
+
+  <span class="inputTitleCss">帳號：</span>
+
+  <mat-form-field>
+    <mat-label>請輸入帳號</mat-label>
+    <input matInput [(ngModel)]="account" (keydown.enter)="toPassword()" [formControl]="accountError" required>
+    @if (accountError.hasError('required')) {
+    <mat-error>帳號不能為空</mat-error>
+    }
+
+  </mat-form-field>
+
+</div>
+<div style="display: flex; justify-content: center;">
+  <span style="position: fixed; color: red;" [hidden]="passwordWarningBool">*密碼錯誤</span>
+</div>
+<br>
+
+<div style="display: flex; justify-content: center;">
+  <span class="inputTitleCss">密碼：</span>
+  <div class="example-container">
+    <mat-form-field>
+      <mat-label>請輸入密碼</mat-label>
+      <input #passwordInput matInput [(ngModel)]="password" (keydown.enter)="login() " [formControl]="passwordError"
+        required [type]="hide() ? 'password' : 'text'" />
+      <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()">
+        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      @if (passwordError.hasError('required')) {
+      <mat-error>請輸入密碼</mat-error>
+
+      }
+    </mat-form-field>
+  </div>
+</div>
+<br>
+<div style="display: flex; justify-content: center;">
+  <button mat-stroked-button class="loginButton" style="margin-right: 70px;" (click)="goback()">返回</button>
+  <button mat-stroked-button class="loginButton" (click)="login()">登入</button>
+
+</div>

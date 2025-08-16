@@ -1,0 +1,58 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="over">
+    <div class="sidenavCss">
+      @if(!adminMode){
+      <button mat-stroked-button class="loginCss" (click)="adminLogIn();sidenav.close()">管理員登入</button>
+      }@else{
+      <button mat-stroked-button class="logoutCss" (click)="adminLogOut();sidenav.close()">登出</button>
+      }
+
+      <span class="example-spacer"></span>
+
+
+      <button mat-stroked-button (click)="backHome();sidenav.close()" class="menuButtonCss"
+        style="color: rgb(41, 21, 21);">回首頁</button>
+      <!-- <button style="color: white; position: fixed; background-color: unset; border: unset; cursor: pointer;"
+        >
+        <mat-icon style="font-size: 50px; height: 50px;width: 50px;">home</mat-icon>
+      </button> -->
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <mat-toolbar style="background-color: unset;">
+
+      <button
+        style="color: white; z-index: 99; position: fixed; background-color: unset; border: unset; cursor: pointer;"
+        (click)="sidenav.toggle()">
+        <mat-icon style="font-size: 50px; height: 50px;width: 50px;">menu</mat-icon>
+      </button>
+
+
+
+    </mat-toolbar>
+
+    @if(currentRoute === '/QuestionList' || currentRoute == "/AdminQuestionList"){
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+    }@else{
+    <div class="tableBackground">
+      <router-outlet></router-outlet>
+    </div>
+    }
+    <div class="topButton" (click)="topButtonPressed()">
+      TOP
+    </div>
+
+
+    <div class="usagiCss">
+      <a href="https://www.youtube.com/watch?v=yK4OrGWmyZk&ab_channel=NerdySkull" target="_blank">
+        <img src="https://media.tenor.com/lwWD9xPnYVwAAAAM/chiikawak-flan.gif" style="height: 50px; cursor: pointer">
+      </a>
+    </div>
+
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

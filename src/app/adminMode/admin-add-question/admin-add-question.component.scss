@@ -1,0 +1,156 @@
+.titleCss {
+  font-size: 20px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  font-size: 60px;
+}
+
+.inputTitleCss {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.addTitleCss {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+
+.inputCss {
+  flex-grow: 1;
+  width: 0;
+  min-width: 150px;
+  height: 20px
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+thead {
+  background-color: rgb(218, 159, 120);
+}
+
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+  text-align: center;
+  // 讓裡面文字過長自動換行
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+td:last-of-type {
+  text-align: center;
+}
+
+tbody>tr:nth-of-type(even) {
+  background-color: rgb(231, 213, 201);
+}
+
+
+.urlCss {
+  color: #004dff;
+  font-size: 15px;
+  text-decoration: underline;
+  // cursor為變更鼠標為手指的css
+  cursor: pointer;
+}
+
+
+.buttonCss {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+
+  .titleCss {
+    font-size: 20px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+  }
+
+  .addTitleCss {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+  }
+
+  .inputTitleCss {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  .inputCss {
+    flex-grow: 1;
+    width: 0;
+    min-width: 150px;
+    height: 20px
+  }
+
+  table {
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    width: 100%;
+  }
+
+  thead {
+    background-color: rgb(218, 159, 120);
+  }
+
+  th,
+  td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+    text-align: center;
+    // 讓裡面文字過長自動換行
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+
+  td:last-of-type {
+    text-align: center;
+  }
+
+  tbody>tr:nth-of-type(even) {
+    background-color: rgb(231, 213, 201);
+  }
+
+
+  .urlCss {
+    color: #004dff;
+    font-size: 15px;
+    text-decoration: underline;
+    // cursor為變更鼠標為手指的css
+    cursor: pointer;
+  }
+
+
+  .buttonCss {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+
+
+
+}

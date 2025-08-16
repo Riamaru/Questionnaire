@@ -1,0 +1,70 @@
+<div style="padding-top: 10px; padding-bottom: 2%;font-size: large;">
+  <div style="top: 5px; right:5px; text-align: right;">問卷時間：{{questionData.sDate}} ～ {{questionData.eDate}}</div>
+  <div class="divCss">
+    <div style="text-align: center; font-size: 50px;">
+      {{questionData.title}}
+    </div>
+    <div>
+      {{questionData.directions}}
+      <br>
+      <br>
+      <br>
+      <br>
+      <span class="required">*</span>姓名 : {{questionData.userName}}
+      <br>
+      <span class="required">*</span>信箱 : {{questionData.userEmail}}
+      <br>
+      手機 : {{questionData.userPhone}}
+      <br>
+      年齡 : {{userAge}}
+    </div>
+  </div>
+  <div style="font-size: larger;">
+    <ol>
+      @for(question of questionData.questionArray; track $index){
+      <li>
+        <h5>
+          @if(question.required == true){
+          <span class="required">*</span>
+          }
+          {{question.questName}}
+        </h5>
+      </li>
+
+      @if(question.questionType == 'Multi'){
+      @for(option of question.options;track $index){
+      @if(option.selectedAnswerBool){
+      {{option.optionName}}<br>
+      }
+      }
+      }
+      @if(question.questionType == 'Single'){
+      @if(question.radioAnswer){
+      @for(option of question.options;track $index){
+      @if(question.radioAnswer == option.questionID){
+      {{option.optionName}}<br>
+      }
+      }
+      }@else{
+      <span>無</span>
+      }
+      }
+      @if(question.questionType == 'Text'){
+      @if(question.textAnswer){
+      {{question.textAnswer}}
+      }@else{
+      <span>無</span>
+      }
+      }
+      }
+    </ol>
+  </div>
+
+  <div style="top: 5px; right: 5px; margin-right: 10px; text-align: right;">
+    <button mat-raised-button (click)="goBackButtonPressed()"
+      style="margin-right: 10px; font-size: larger;">回上頁</button>
+    @if(!adminMode){
+    <button mat-raised-button (click)="saveButtonPressed()" style="font-size: larger;">提交</button>
+    }
+  </div>
+</div>

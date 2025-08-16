@@ -1,0 +1,50 @@
+<div class="quizTitleCss">
+  {{title}}
+</div>
+<br>
+<br>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="tableCss" matSort>
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 100px"> 編號 </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 姓名 </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.name}}
+      </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 填寫日期 </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+
+    <!-- go Column -->
+    <ng-container matColumnDef="go">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center; width: 100px"> 觀看回覆 </th>
+      <td mat-cell *matCellDef="let element" (click)="viewUserAnswer(element)" style="text-align: center;">
+        <div class="urlCss">
+          {{element.go}}
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator style="background-color: rgb(197, 198, 199);" [pageSizeOptions]="[10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+<br>
+<div style="display: flex; justify-content: right;">
+      <button mat-raised-button (click)="viewResult()" style="margin-right: 20px; font-size: larger;">查看統計結果</button>
+  <button mat-raised-button (click)="goBack()" style="margin-right: 10px; font-size: larger;">回上頁</button>
+
+</div>

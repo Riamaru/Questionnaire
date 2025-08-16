@@ -1,0 +1,49 @@
+.loginButton {
+  font-size: 40px;
+  padding: 4%;
+  color: rgba(255, 255, 255, 0.822);
+  border-color: black;
+  background-color: rgb(131, 71, 71);
+}
+
+mat-form-field {
+  width: 300px;
+}
+
+.typingWrong {
+  color: red;
+}
+
+.titleCss {
+  font-size: 60px;
+}
+
+.inputTitleCss {
+  font-size: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .loginButton {
+    font-size: 25px;
+    padding: 4%;
+    color: rgba(255, 255, 255, 0.822);
+    border-color: black;
+    background-color: rgb(131, 71, 71);
+  }
+
+  .typingWrong {
+    color: red;
+  }
+
+  .titleCss {
+    font-size: 40px;
+  }
+
+  .inputTitleCss {
+    font-size: 20px;
+  }
+
+  mat-form-field {
+    width: 250px;
+  }
+}

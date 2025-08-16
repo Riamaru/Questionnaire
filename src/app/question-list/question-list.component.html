@@ -1,0 +1,38 @@
+@if(welcome){
+<div class="overlay" [ngClass]="{'hidden': !isOverlayVisible}">
+  <div class="main-title">11403-JAVA高雄班</div>
+  <div class="sub-title">個人專題：動態問卷</div>
+
+</div>
+}
+
+
+<div class="tableBackground" style="margin-bottom:20px ;">
+  <app-slide-show></app-slide-show>
+</div>
+
+<div class="tableBackground">
+  <div style="padding-top: 10px;">
+    <div class="divCss">
+      問券名稱查詢:
+      <input (keydown.enter)="toSDate()" [(ngModel)]="searchInput" class="searchCss" (keyup)="changeInput()">
+      <br>
+      <br>
+      結束時間查詢:
+      <input #sDate (keydown.enter)="toEDate()" class="dateCss" type="date" [(ngModel)]="startDate" [max]="endDate">
+      到:
+      <input #eDate (keydown.enter)="dateSearch()" class="dateCss" type="date" [(ngModel)]="endDate"
+        [disabled]="!startDate" [min]="startDate">
+      <br>
+      <div style="display: flex; justify-content: flex-end; margin-top: 10px; margin-right: 2%;">
+        <button mat-mini-fab style="height: 30px; width: 30px" (click)="dateSearch()">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button mat-mini-fab style="height: 30px; width: 30px; margin-left: 20px;" (click)="clear()">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </div>
+    </div>
+    <app-list-table [ELEMENT_DATA]="ELEMENT_DATA"></app-list-table>
+  </div>
+</div>

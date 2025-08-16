@@ -1,0 +1,110 @@
+<div style="padding: 4%;">
+  <div>
+    <div>
+      <span class="titleCss">
+        @if(!edtiQuestionMode){新增}@else{編輯}問卷
+      </span>
+    </div>
+    <br>
+    @if(edtiQuestionMode){
+    <div style="width: 100%; display: flex; align-items: center;">
+      <span class="inputTitleCss">
+        問卷編號：
+      </span>
+      <input #ID (keydown.enter)="toTitle()" type="number" class="inputCss" [(ngModel)]="questionID" disabled>
+    </div>
+    }
+    <!-- <div style=" padding-left: 110px; display: flex; position: absolute;">
+      <span [hidden]="checkQuestionIDBool" style="color: rgb(192, 3, 3);font-size: 12px;">*編號重複</span>
+    </div> -->
+    <br>
+    <div style="width: 100%; display: flex; align-items: center;">
+      <span class="inputTitleCss">
+        問卷名稱：
+      </span>
+      <input #title (keydown.enter)="toDirections()" type="text" class="inputCss" [(ngModel)]="questionTitle">
+    </div>
+    <br>
+    <div style="width: 100%; display: flex; align-items: center;">
+      <span class="inputTitleCss">
+        問卷說明：
+      </span>
+      <input #direction (keydown.enter)="toStartDate()" type="text" class="inputCss" [(ngModel)]="questionDirections">
+    </div>
+    <br>
+    <div style="width: 100%; display: flex; align-items: center;">
+      <span class="inputTitleCss">
+        開始時間：
+      </span>
+      <input #startDate (keydown.enter)="toEndDate()" type="date" class="inputCss" [(ngModel)]="questionStartDate"
+        [min]="today" [max]="questionEndDate">
+    </div>
+    <br>
+    <div style="width: 100%; display: flex; align-items: center;">
+      <span class="inputTitleCss">
+        結束時間：
+      </span>
+      <input #endDate type="date" class="inputCss" [(ngModel)]="questionEndDate" [disabled]="!questionStartDate"
+        [min]="questionStartDate">
+    </div>
+  </div>
+
+  <br>
+
+  <div style="border: solid">
+
+    <p class="addTitleCss">新增問題類型</p>
+    <br>
+    <div style="display: flex; justify-content: center;">
+      <button mat-raised-button (click)="openDialog('Single')" style="margin-right: 10px;">單選題</button>
+      <button mat-raised-button (click)="openDialog('Multi')" style="margin-right: 10px;">多選題</button>
+      <button mat-raised-button (click)="openDialog('Text')">簡答題</button>
+    </div>
+    <br>
+    <br>
+  </div>
+  <br>
+
+  <div style="border: solid; padding: 4%;">
+    <mat-icon class="buttonCss" aria-hidden="false" fontIcon="delete_forever" (click)="deleteOption()"></mat-icon>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">選取刪除</th>
+          <th scope="col">問題名稱</th>
+          <th scope="col">種類</th>
+          <th scope="col">必填</th>
+          <th scope="col">編輯</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (question of saveQuestArray; track $index) {
+        <tr>
+          <td>
+            <input style="height: 20px; width: 20px;" type="checkbox" [(ngModel)]="question.checkBox">
+          </td>
+          <td>{{question.questionTitle}}</td>
+          <td>{{question.questionTypeChinese}}</td>
+          <td>
+            <input style="height: 20px; width: 20px;" type="checkbox" [disabled]="true" [(ngModel)]="question.required">
+          </td>
+          <td class="urlCss" (click)="goEdit(question)">編輯</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    <br>
+    @if (saveQuestArray.length > 0) {
+    <button mat-raised-button style="float: right;" (click)="goPreview()">預覽</button>
+    }
+    <br><br>
+
+
+  </div>
+  <br>
+<div style="display: flex; justify-content: right;">
+  <button mat-raised-button (click)="turnBack()" style="margin-right: 10px; font-size: larger;">回上頁</button>
+</div>
+  <!-- <button (click)="" style="margin-right: 10px; font-size: larger;">回上頁</button> -->
+
+</div>

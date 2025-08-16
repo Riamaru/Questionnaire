@@ -1,0 +1,86 @@
+.quizTitleCss {
+  text-align: center;
+  font-size: 50px;
+}
+
+.urlCss {
+  color: #004dff;
+  text-decoration: underline;
+  // cursor為變更鼠標為手指的css
+  cursor: pointer;
+  font-size: 17px;
+}
+
+table {
+  width: 100%;
+}
+
+.tableCss {
+  th {
+    color: #ffffff;
+    background-color: #757092;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    font-size: 15px;
+  }
+
+  tr {
+    background-color: #9ec0df;
+    font-size: 17px;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #dfddf3;
+    font-size: 17px;
+  }
+
+
+
+  // tr:hover {
+  //   background-color: #1f95ff;
+  // }
+}
+
+
+@media screen and (max-width: 768px) {
+  .quizTitleCss {
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .urlCss {
+    color: #004dff;
+
+    font-size: 12px;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .tableCss {
+    th {
+      color: #ffffff;
+      background-color: #757092;
+      border-left: 1px solid #fff;
+      border-right: 1px solid #fff;
+      font-size: 10px;
+    }
+
+    tr {
+      background-color: #9ec0df;
+      font-size: 12px;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #dfddf3;
+      font-size: 12px;
+    }
+
+
+
+    // tr:hover {
+    //   background-color: #1f95ff;
+    // }
+  }
+}

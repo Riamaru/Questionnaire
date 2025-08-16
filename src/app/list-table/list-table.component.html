@@ -1,0 +1,68 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="tableCss" matSort>
+    @if(adminMode){
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef style="width: 20px;">
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+          (change)="($event ? selection.toggle(row) : null) && outputSelected()" [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    }
+    <!-- Position Column -->
+    <ng-container matColumnDef="ID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="idCss"> 編號 </th>
+      <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="questionNameCss"> 名稱 </th>
+      <td mat-cell *matCellDef="let element" (click)="goQuestion(element)">
+        <button style="padding-left: 1%; background-color: unset; border: unset; font-size: 17px; text-align: left;"
+          [ngClass]="{'urlCss': element.statusCode == 'progress' || (adminMode)}" title="{{element.name}}">
+          {{element.name}}
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="statusCss"> 狀態 </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="dateCss"> 開始日期 </th>
+      <td mat-cell *matCellDef="let element"> {{element.sDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="eDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="dateCss"> 結束日期 </th>
+      <td mat-cell *matCellDef="let element"> {{element.eDate}} </td>
+    </ng-container>
+
+    <!-- go Column -->
+    <ng-container matColumnDef="go">
+      <th mat-header-cell *matHeaderCellDef class="viewResultCss"> 統計/結果 </th>
+      <td mat-cell *matCellDef="let element" (click)="viewResult(element)">
+        <button style="background-color: unset; border: unset;" class="urlCss"
+          [ngClass]="{ 'ResultCss': element.statusCode === 'notStartedYet' && !adminMode, 'urlCss': element.statusCode !== 'notStartedYet' || adminMode}">
+          {{element.go}}
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator style="background-color: rgb(197, 198, 199);" [pageSizeOptions]="[ 5, 10]" showFirstLastButtons
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

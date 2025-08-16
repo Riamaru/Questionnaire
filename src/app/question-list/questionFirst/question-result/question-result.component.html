@@ -1,0 +1,51 @@
+<div class="divCss" style="position: relative;">
+  <div style="position: absolute ; top: 5px; right:5px; text-align: right;">問卷時間:{{questData.sDate}}~{{questData.eDate}}
+  </div>
+
+  <div style="width: 500px;">
+    <br>
+    <br>
+    <div class="quizTitleCss">
+      {{questData.title}}
+    </div>
+    <br>
+    @for(data of questData.chartData; track $index){
+    @if (data.questionType != 'Text'){
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <div class="canvasCss">
+        <canvas id={{data.ID}}></canvas>
+      </div>
+    </div>
+    <br>
+    }
+    <span class="questionTitleCss">題目： {{data.name}}</span>
+    <!-- 判斷不是文字題就顯示選項跟數量 -->
+    <!-- 判斷是文字提就顯示文字 -->
+    @if (data.questionType != 'Text') {
+    @for (label of data.labels; track $index) {
+
+    <h5>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="questionOptionCss" style="width: 50px;">{{ getPercentage(data, $index) }}</div>
+        <div class="questionOptionCss" style="flex-grow: 1; max-width: 300px;" title="{{ data.labels[$index] }}">選項： {{
+          data.labels[$index] }}</div>
+        <div class="questionOptionCss" style="margin-left: 30px; text-align: right;">{{ data.data[$index] }}</div>
+      </div>
+    </h5>
+
+    }
+    } @else {
+    @for (data of data.data; track $index) {
+    <h5 class="typeTCss">{{data}}</h5>
+    }
+    }
+
+    <br>
+    }
+  </div>
+</div>
+
+
+<div style="bottom: 10px; right: 10px; text-align: right; padding-right: 2%; padding-bottom: 50px;">
+  <button mat-raised-button style="font-size: larger;" (click)="goBack()">回上頁</button>
+</div>

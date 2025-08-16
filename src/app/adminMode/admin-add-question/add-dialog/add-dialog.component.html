@@ -1,0 +1,48 @@
+<h2 mat-dialog-title
+  style="display: flex; justify-content: center; color: rgb(105, 64, 64); font-size: 40px; padding-top: 20px;">
+  @if(!editMode){新增}
+  @else {編輯}問題({{getQuestStatsName(questionType)}})</h2>
+
+  @if(questionType != 'Text'){
+  <span style="display: flex; justify-content: center; color: rgb(105, 64, 64); font-size: 25px;" >選項最多為20個</span>
+  }
+<mat-dialog-content style="font-size: 25px; color: rgb(61, 41, 41);">
+  <div style="padding: 3%; display: flex; align-items: center;">
+    <label>問題名稱：</label><input style="height: 25px; width: 40%;" [(ngModel)]="questionTitle">
+    <label style="margin-left: auto;">是否必填</label><input style="height: 25px; width: 25px;" type="checkbox"
+      [(ngModel)]="requiredCheckBox">
+  </div>
+  @if(questionType != 'Text'){
+  <div style="padding: 5%; border: solid; position: relative;">
+
+    <div style="position: absolute; right: 10px; top:10px">
+      <button mat-mini-fab style="background-color: #e6dad1;" (click)="addOption()" [hidden]="hidePlusButton">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <ol style="overflow: auto;height: 25vh;">
+      @for (quest of optionArray;track $index) {
+      <li>
+        <input style="height: 25px; width: 340px;" [(ngModel)]="quest.question">
+        @if ($index > 1) {
+        <button mat-mini-fab style="background-color: #e6dad1; margin-left: 10px; height: 25px; width: 25px;"
+          (click)="deleteOption($index)">
+          <mat-icon>remove</mat-icon>
+        </button>
+        }
+      </li><br>
+      }
+    </ol>
+
+  </div>
+  }
+</mat-dialog-content>
+
+
+
+
+
+<mat-dialog-actions>
+  <button mat-raised-button (click)="closeButtonPressed()">取消</button>
+  <button mat-raised-button (click)="saveButtonPressed()">@if(editMode){儲存}@else {新增}</button>
+</mat-dialog-actions>

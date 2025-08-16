@@ -1,0 +1,33 @@
+<div class="tableBackground" style="padding:10px;">
+
+  <div class="divCss">
+    問券名稱查詢:
+    <input [(ngModel)]="searchInput" class="searchCss" (keyup)="changeInput()" (keydown.enter)="toSDate()">
+    <br>
+    <br>
+    結束時間查詢:
+    <input #sDate class="dateCss" type="date" [(ngModel)]="startDate" [max]="endDate" (keydown.enter)="toEDate()">
+    到:
+    <input #eDate class="dateCss" type="date" [(ngModel)]="endDate" [disabled]="!startDate" [min]="startDate"
+      (keydown.enter)="dateSearch()">
+    <br>
+    <div style="display: flex; justify-content: flex-end; margin-top: 10px; margin-right: 2%;">
+      <button mat-mini-fab style="height: 30px; width: 30px;" (click)="dateSearch()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-mini-fab style="height: 30px; width: 30px; margin-left: 20px;" (click)="clear()">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </div>
+  </div>
+
+
+  <button style="background-color: unset; border: unset;">
+    <mat-icon class="buttonCss" aria-hidden="false" fontIcon="delete_forever" (click)="openDialog()"></mat-icon>
+  </button>
+
+  <button style="background-color: unset; border: unset;">
+    <mat-icon class="buttonCss" aria-hidden="false" fontIcon="add_box" (click)="goAddQuestion()"></mat-icon>
+  </button>
+  <app-list-table [ELEMENT_DATA]="ELEMENT_DATA" (selectedData)="inputSelectedData($event)"></app-list-table>
+</div>
